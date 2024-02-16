@@ -13,4 +13,12 @@ $cliente->endereco = $_POST['endereco'];
 
 $c->cadastrarCliente($cliente);
 
-header("Location: index.php");
+?>
+
+<script>
+
+    sessionStorage.setItem("clienteDeletado", "false");
+
+    location = "index.php";
+
+</script>

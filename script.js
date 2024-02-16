@@ -15,10 +15,15 @@ const ttbContato = document.querySelector("#ttbContato");
 const ttbEndereco = document.querySelector("#ttbEndereco");
 
 
+if (sessionStorage.getItem("clienteDeletado") == "true") {
 
-if (clienteDeletado.innerHTML == "true") {
-    mostrarAlert();
+    // Verifica se a página não foi recarregada
+    if (!window.performance.getEntriesByType("navigation").map((nav) => nav.type).includes("reload")) {
+        mostrarAlert();
+    }
 }
+
+console.log(window.performance.getEntriesByType("navigation"))
 
 function mostrarModal(contexto, codigo) {
 
@@ -61,12 +66,6 @@ function editarCliente(id) {
 
 function mostrarAlert() {
 
-    if (!alertDone) {
-        return;
-    }
-
-    alertDone = false;
-
     const disposableAlert = myAlert.cloneNode(true);
 
     document.body.insertBefore(disposableAlert, document.querySelector(".container"));
@@ -80,12 +79,6 @@ function mostrarAlert() {
         alertObj.close();
 
     }, 2000);
-
-    disposableAlert.addEventListener("closed.bs.alert", function(){
-
-        alertDone = true;
-
-    });
 
 }
 

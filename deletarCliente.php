@@ -8,18 +8,12 @@ $c = new Cliente();
 
 $c->deletarCliente($codigo);
 
-//header('Location: index.php');
-
 ?>
-
-<form action="index.php" method="post">
-    <input name="clienteDeletado" value=true>
-</form>
 
 <script>
 
-const form = document.querySelector("form");
+    sessionStorage.setItem("clienteDeletado", "true");
 
-form.submit();
+    location = "index.php";
 
 </script>

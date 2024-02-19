@@ -5,6 +5,7 @@ var alertDone = true;
 var clienteDeletado = document.querySelector("#clienteDeletado");
 const modal = document.querySelector("#modalForm");
 const modalTitle = document.querySelector(".modal-title");
+const modalBody = document.querySelector(".modal-body");
 const modalObj = new bootstrap.Modal(modal);
 const btnConfirmarModal = document.querySelector("#btnConfirmarModal");
 const form = document.querySelector("form");
@@ -23,14 +24,19 @@ if (sessionStorage.getItem("clienteDeletado") == "true") {
     }
 }
 
-console.log(window.performance.getEntriesByType("navigation"))
-
 function mostrarModal(contexto, codigo) {
 
     if (contexto == 'cadastro') {
         modalTitle.textContent = "Cadastro de Cliente";
         btnConfirmarModal.innerText = "Cadastrar";
         form.setAttribute("action", "cadastrarCliente.php");
+
+        modalBody.childNodes.forEach(formElement => {
+            if (formElement.nodeName == "INPUT") {
+                formElement.removeAttribute("value");
+            }
+        });
+
     } else if (contexto == 'editar') {
 
         let jsonCliente = JSON.parse(document.querySelector("#jsonCliente" + codigo).innerText);
@@ -81,16 +87,3 @@ function mostrarAlert() {
     }, 2000);
 
 }
-
-
-form.addEventListener("submit", function(e){
-    
-    console.log("submited");
-
-});
-
-modal.addEventListener("hidden.bs.modal", function(){
-
-    form.reset();
-
-});

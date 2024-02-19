@@ -30,13 +30,6 @@ function mostrarModal(contexto, codigo) {
         modalTitle.textContent = "Cadastro de Cliente";
         btnConfirmarModal.innerText = "Cadastrar";
         form.setAttribute("action", "cadastrarCliente.php");
-
-        modalBody.childNodes.forEach(formElement => {
-            if (formElement.nodeName == "INPUT") {
-                formElement.removeAttribute("value");
-            }
-        });
-
     } else if (contexto == 'editar') {
 
         let jsonCliente = JSON.parse(document.querySelector("#jsonCliente" + codigo).innerText);
@@ -63,13 +56,6 @@ function mostrarModal(contexto, codigo) {
 
 }
 
-function editarCliente(id) {
-
-    console.log(id);
-
-}
-
-
 function mostrarAlert() {
 
     const disposableAlert = myAlert.cloneNode(true);
@@ -87,3 +73,13 @@ function mostrarAlert() {
     }, 2000);
 
 }
+
+modal.addEventListener("hidden.bs.modal", function(){
+    form.reset();
+
+    modalBody.childNodes.forEach(formElement => {
+        if (formElement.nodeName == "INPUT") {
+            formElement.removeAttribute("value");
+        }
+    });
+});

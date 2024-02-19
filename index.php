@@ -70,7 +70,8 @@ $clientes = $c->listarClientes();
                             <td><?= $cliente->email ?></td>
                             <td><?= $cliente->contato ?></td>
                             <td><?= $cliente->endereco ?></td>
-                            <td><button class="btn btn-success me-2" onclick="mostrarModal('editar', <?= $cliente->codigo; ?> )">Editar <i class="fa fa-pencil"></i></button><a href="deletarCliente.php?codigo=<?= $cliente->codigo ?>"><button class="btn btn-danger">Excluir <i class="fa fa-trash"></i></button></a></td>
+                            <td><button class="btn btn-success me-2" onclick="mostrarModal('editar', <?= $cliente->codigo; ?> )">Editar <i class="fa fa-pencil"></i></button>
+                                <a href="deletarCliente.php?codigo=<?= $cliente->codigo ?>"><button class="btn btn-danger">Excluir <i class="fa fa-trash"></i></button></a></td>
                         </tr>
 
                         <div id="jsonCliente<?= $cliente->codigo; ?>" class="d-none"><?= json_encode($cliente); ?></div>

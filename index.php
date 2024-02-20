@@ -50,12 +50,6 @@ $clientes = $c->listarClientes();
         </div>
     </nav>
 
-    <nav class="navbar bg-primary">
-        <div class="container-fluid d-flex justify-content-center">
-          <span class="navbar-brand m-0 h1 text-white">este é um background azul</span>
-        </div>
-    </nav>
-
     <div class="container mt-3">
         <div class="card">
             <div class="card-body">

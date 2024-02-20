@@ -27,9 +27,13 @@ $clientes = $c->listarClientes();
             margin-left: 80vw;
         }
 
-        body {
-            /*height: 9000px;*/
+        /*th, td, span {
+            font-size: 1.5vmax;
         }
+
+        td button {
+            height: 5vmax;
+        }*/
     </style>
 </head>
 <body>
@@ -51,34 +55,41 @@ $clientes = $c->listarClientes();
             <div class="card-body">
                 <button id="btnCadastrar" class="btn btn-success" onclick="mostrarModal('cadastro')">Cadastrar Cliente <i class="fa fa-add"></i></button>
 
-                <table class="table table-bordered table-striped table-hover text-center mt-3">
+                <div class="table-responsive">
 
-                <tr>
-                    <th>Código</th>
-                    <th>Nome</th>
-                    <th>E-mail</th>
-                    <th>Contato</th>
-                    <th>Endereço</th>
-                    <th>Ações</th>
-                </tr>
-
-                    <?php foreach ($clientes as $cliente) { ?>
+                    <table class="table table-bordered table-striped table-hover text-center mt-3">
 
                         <tr>
-                            <td><?= $cliente->codigo ?></td>
-                            <td><?= $cliente->nome ?></td>
-                            <td><?= $cliente->email ?></td>
-                            <td><?= $cliente->contato ?></td>
-                            <td><?= $cliente->endereco ?></td>
-                            <td><button class="btn btn-success me-2" onclick="mostrarModal('editar', <?= $cliente->codigo; ?> )">Editar <i class="fa fa-pencil"></i></button>
-                                <a href="deletarCliente.php?codigo=<?= $cliente->codigo ?>"><button class="btn btn-danger">Excluir <i class="fa fa-trash"></i></button></a></td>
+                            <th>Código</th>
+                            <th>Nome</th>
+                            <th>E-mail</th>
+                            <th>Contato</th>
+                            <th>Endereço</th>
+                            <th>Ações</th>
                         </tr>
 
-                        <div id="jsonCliente<?= $cliente->codigo; ?>" class="d-none"><?= json_encode($cliente); ?></div>
+                        <?php foreach ($clientes as $cliente) { ?>
 
-                    <?php } ?>
-                   
-                </table>
+                            <tr>
+                                <td><?= $cliente->codigo ?></td>
+                                <td><?= $cliente->nome ?></td>
+                                <td><?= $cliente->email ?></td>
+                                <td><?= $cliente->contato ?></td>
+                                <td><?= $cliente->endereco ?></td>
+                                <td>
+                                    <div class="d-inline-block">
+                                        <button class="btn btn-success" onclick="mostrarModal('editar', <?= $cliente->codigo; ?> )"><span>Editar <i class="fa fa-pencil"></i></span></button>
+                                    </div>
+                                    <div class="d-inline-block">
+                                        <a href="deletarCliente.php?codigo=<?= $cliente->codigo ?>"><button class="btn btn-danger"><span>Excluir <i class="fa fa-trash"></i></span></button></a>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <div id="jsonCliente<?= $cliente->codigo; ?>" class="d-none"><?= json_encode($cliente); ?></div>
+                        <?php } ?>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

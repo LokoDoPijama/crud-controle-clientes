@@ -26,14 +26,6 @@ $clientes = $c->listarClientes();
             width: 20vw;
             margin-left: 80vw;
         }
-
-        /*th, td, span {
-            font-size: 1.5vmax;
-        }
-
-        td button {
-            height: 5vmax;
-        }*/
     </style>
 </head>
 <body>
@@ -47,12 +39,6 @@ $clientes = $c->listarClientes();
     <nav class="navbar bg-primary">
         <div class="container-fluid d-flex justify-content-center">
           <span class="navbar-brand m-0 h1 text-white">CRUD PROJETO CONTROLE DE CLIENTES</span>
-        </div>
-    </nav>
-
-    <nav class="navbar bg-primary">
-        <div class="container-fluid d-flex justify-content-center">
-          <span class="navbar-brand m-0 h1 text-white">este é um background azul</span>
         </div>
     </nav>
 

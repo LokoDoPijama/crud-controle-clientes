@@ -14,7 +14,8 @@ const ttbNome = document.querySelector("#ttbNome");
 const ttbEmail = document.querySelector("#ttbEmail");
 const ttbContato = document.querySelector("#ttbContato");
 const ttbEndereco = document.querySelector("#ttbEndereco");
-
+const tooltip = document.querySelector("[data-bs-toggle='tooltip']");
+const tooltipObj = new bootstrap.Tooltip(tooltip, {"trigger": "hover"});
 
 if (sessionStorage.getItem("clienteDeletado") == "true") {
 

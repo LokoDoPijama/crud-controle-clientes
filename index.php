@@ -32,9 +32,13 @@ $clientes = $c->listarClientes();
             margin: auto;
         }
 
+        #lbCodigo, #lbNome {
+            width: 7%;
+        }
+
         @media screen and (max-width: 727px) {
 
-            .btn-success span {
+            .btn-primary span {
                 display: none;
             }
 
@@ -62,7 +66,25 @@ $clientes = $c->listarClientes();
     
     <div class="card mt-3">
         <div class="card-body">
-            <button id="btnCadastrar" class="btn btn-success" onclick="mostrarModal('cadastro')">Cadastrar Cliente <i class="fa fa-add"></i></button>
+            <div class="row">
+                <label id="lbCodigo" class="col-form-label col-1">Código:</label>
+                <div class="col-2 ps-0">
+                    <input class="form-control" type="text" placeholder="Código" style="border-radius: 2px">
+                </div>
+                <label id="lbNome" class="col-form-label col-1 ms-1">Nome:</label>
+                <div class="col-2 ps-0">
+                    <input class="form-control" type="text" placeholder="Nome" style="border-radius: 2px"
+                    data-bs-toggle="tooltip" data-bs-placement="bottom"
+                    data-bs-title="Digitar algo aqui faz a aplicação ignorar o que estiver escrito no campo de código.">
+                </div>
+                <div class="col">
+                    <button class="btn btn-secondary"><i class="fa fa-magnifying-glass"></i> Buscar</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <button id="btnCadastrar" class="btn btn-primary" onclick="mostrarModal('cadastro')">Cadastrar Cliente <i class="fa fa-add"></i></button>
 
             <div class="table-responsive">
 
@@ -87,7 +109,7 @@ $clientes = $c->listarClientes();
                             <td><?= $cliente->endereco ?></td>
                             <td>
                                 <div class="d-inline-block">
-                                    <button class="btn btn-success" onclick="mostrarModal('editar', <?= $cliente->codigo; ?> )"><span>Editar </span><i class="fa fa-pencil"></i></button>
+                                    <button class="btn btn-primary" onclick="mostrarModal('editar', <?= $cliente->codigo; ?> )"><span>Editar </span><i class="fa fa-pencil"></i></button>
                                 </div>
                                 <div class="d-inline-block">
                                     <a href="deletarCliente.php?codigo=<?= $cliente->codigo ?>"><button class="btn btn-danger"><span>Excluir </span><i class="fa fa-trash"></i></button></a>

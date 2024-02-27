@@ -8,7 +8,7 @@ const modalTitle = document.querySelector(".modal-title");
 const modalBody = document.querySelector(".modal-body");
 const modalObj = new bootstrap.Modal(modal);
 const btnConfirmarModal = document.querySelector("#btnConfirmarModal");
-const form = document.querySelector("form");
+const formCadastro = document.querySelector("#formCadastro");
 const inputCodigo = document.querySelector("#inputCodigo");
 const ttbNome = document.querySelector("#ttbNome");
 const ttbEmail = document.querySelector("#ttbEmail");
@@ -16,6 +16,7 @@ const ttbContato = document.querySelector("#ttbContato");
 const ttbEndereco = document.querySelector("#ttbEndereco");
 const tooltip = document.querySelector("[data-bs-toggle='tooltip']");
 const tooltipObj = new bootstrap.Tooltip(tooltip, {"trigger": "hover"});
+const formBusca = document.querySelector("#formBusca");
 
 if (sessionStorage.getItem("clienteDeletado") == "true") {
 
@@ -30,14 +31,14 @@ function mostrarModal(contexto, codigo) {
     if (contexto == 'cadastro') {
         modalTitle.textContent = "Cadastro de Cliente";
         btnConfirmarModal.innerText = "Cadastrar";
-        form.setAttribute("action", "cadastrarCliente.php");
+        formCadastro.setAttribute("action", "cadastrarCliente.php");
     } else if (contexto == 'editar') {
 
         let jsonCliente = JSON.parse(document.querySelector("#jsonCliente" + codigo).innerText);
         
         modalTitle.textContent = "Editar Registro";
 
-        form.setAttribute("action", "editarCliente.php");
+        formCadastro.setAttribute("action", "editarCliente.php");
 
         inputCodigo.setAttribute("value", jsonCliente.codigo);
 
@@ -72,15 +73,38 @@ function mostrarAlert() {
         alertObj.close();
 
     }, 2000);
-
 }
 
 modal.addEventListener("hidden.bs.modal", function(){
-    form.reset();
+    formCadastro.reset();
 
     modalBody.childNodes.forEach(formElement => {
         if (formElement.nodeName == "INPUT") {
             formElement.removeAttribute("value");
         }
     });
+});
+
+formBusca.addEventListener("submit", function(e){
+
+    sessionStorage.setItem("clienteDeletado", "false");
+    
+    let listaDeInputs = formBusca.querySelectorAll("input");
+
+    listaDeInputs = Array.from(listaDeInputs);
+
+    listaDeInputs = listaDeInputs.map((input) => input.value.trim());
+    
+    inputsVazios = true;
+
+    listaDeInputs.forEach((input) => {
+        if (input !== "") {
+            inputsVazios = false;
+        }
+    });
+
+    if (inputsVazios == true) {
+        e.preventDefault();
+        location = "index.php";
+    }
 });

@@ -4,7 +4,17 @@ require "classes/bancoDeDados/Cliente.php";
 
 $c = new Cliente();
 
-$clientes = $c->listarClientes();
+$codigo = "";
+
+if (isset($_GET['codigo'])) {
+    $codigo = trim($_GET['codigo']);
+}
+
+if ($codigo !== "") {
+    $clientes = $c->pesquisarPorCodigo($codigo);
+} else {
+    $clientes = $c->listarClientes();
+}
 
 ?>
 
@@ -34,6 +44,10 @@ $clientes = $c->listarClientes();
 
         #lbCodigo, #lbNome {
             width: 7%;
+        }
+
+        .inputRadius2px {
+            border-radius: 2px;
         }
 
         @media screen and (max-width: 727px) {
@@ -66,21 +80,27 @@ $clientes = $c->listarClientes();
     
     <div class="card mt-3">
         <div class="card-body">
-            <div class="row">
-                <label id="lbCodigo" class="col-form-label col-1">Código:</label>
-                <div class="col-2 ps-0">
-                    <input class="form-control" type="text" placeholder="Código" style="border-radius: 2px">
+            <form id="formBusca" action="index.php" method="get">
+                <div class="row">
+                    <label id="lbCodigo" class="col-form-label col-1">Código:</label>
+                    <div class="col-2 ps-0">
+                        <input class="form-control inputRadius2px" type="text" placeholder="Código"
+                        name="codigo" value=<?= $codigo ?>>
+                    </div>
+                    <label id="lbNome" class="col-form-label col-1 ms-1">Nome:</label>
+                    <div class="col-2 ps-0">
+                        <input class="form-control inputRadius2px" type="text" placeholder="Nome" name="nome"
+                        data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        data-bs-title="Digitar algo aqui faz a aplicação ignorar o que estiver escrito no campo de código.">
+                    </div>
+                    <div class="col">
+                        <button class="btn btn-secondary"><i class="fa fa-magnifying-glass me-1"></i> Buscar</button>
+                    </div>
+                    <div class="col d-flex justify-content-end">
+                        <button class="btn btn-secondary" type="button"><i class="fa fa-ellipsis-vertical me-1"></i> Mais Opções</button>
+                    </div>
                 </div>
-                <label id="lbNome" class="col-form-label col-1 ms-1">Nome:</label>
-                <div class="col-2 ps-0">
-                    <input class="form-control" type="text" placeholder="Nome" style="border-radius: 2px"
-                    data-bs-toggle="tooltip" data-bs-placement="bottom"
-                    data-bs-title="Digitar algo aqui faz a aplicação ignorar o que estiver escrito no campo de código.">
-                </div>
-                <div class="col">
-                    <button class="btn btn-secondary"><i class="fa fa-magnifying-glass"></i> Buscar</button>
-                </div>
-            </div>
+            </form>
         </div>
 
         <div class="card-body">
@@ -138,7 +158,7 @@ $clientes = $c->listarClientes();
               <h5 class="modal-title">Título default</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="cadastrarCliente.php" method="post">
+            <form id="formCadastro" action="cadastrarCliente.php" method="post">
                 <div class="modal-body">
 
                     <input id="inputCodigo" type="hidden" name="codigo">

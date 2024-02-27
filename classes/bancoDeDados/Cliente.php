@@ -51,6 +51,22 @@ class Cliente {
 
     }
 
+    function pesquisarPorCodigo($codigo) {
+
+        $sql = "select * from clientes where id = :codigo";
+
+        $q = $this->conexao->prepare($sql);
+
+        $q->bindParam(":codigo", $codigo);
+
+        $q->execute();
+
+        $clientes = $this->mapear($q);
+
+        return $clientes;
+
+    }
+
     function cadastrarCliente($cliente) {
 
         $sql = "insert into clientes (nome, email, contato, endereco)

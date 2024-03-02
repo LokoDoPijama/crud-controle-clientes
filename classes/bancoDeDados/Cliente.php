@@ -7,7 +7,7 @@ class Cliente {
 
     private $conexao;
 
-    function __construct() {
+    public function __construct() {
 
         $con = new Conexao();
 
@@ -15,7 +15,7 @@ class Cliente {
 
     }
 
-    function mapear($q) {
+    private function mapear($q) {
 
         $clientes = [];
 
@@ -37,7 +37,7 @@ class Cliente {
         
     }
 
-    function listarClientes() {
+    public function listarClientes() {
 
         $sql = "select * from clientes limit 1000";
 
@@ -51,7 +51,7 @@ class Cliente {
 
     }
 
-    function pesquisarPorCodigo($codigo) {
+    public function pesquisarPorCodigo($codigo) {
 
         $sql = "select * from clientes where id = :codigo";
 
@@ -67,7 +67,25 @@ class Cliente {
 
     }
 
-    function cadastrarCliente($cliente) {
+    public function pesquisarPorNome($nome) {
+
+        $sql = "select * from clientes where nome like :nome";
+
+        $q = $this->conexao->prepare($sql);
+
+        $nome = "%" . $nome . "%";
+
+        $q->bindParam(":nome", $nome);
+
+        $q->execute();
+
+        $clientes = $this->mapear($q);
+
+        return $clientes;
+
+    }
+
+    public function cadastrarCliente($cliente) {
 
         $sql = "insert into clientes (nome, email, contato, endereco)
         values (:nome, :email, :contato, :endereco)";
@@ -83,7 +101,7 @@ class Cliente {
 
     }
 
-    function editarCliente($cliente) {
+    public function editarCliente($cliente) {
 
         $sql = "update clientes set nome = :nome, email = :email,
         contato = :contato, endereco = :endereco where id = :codigo";
@@ -100,7 +118,7 @@ class Cliente {
 
     }
 
-    function deletarCliente($codigo) {
+    public function deletarCliente($codigo) {
 
         $sql = "delete from clientes where id = :codigo";
 

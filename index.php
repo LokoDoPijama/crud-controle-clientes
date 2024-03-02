@@ -5,12 +5,19 @@ require "classes/bancoDeDados/Cliente.php";
 $c = new Cliente();
 
 $codigo = "";
+$nome = "";
 
 if (isset($_GET['codigo'])) {
     $codigo = trim($_GET['codigo']);
 }
 
-if ($codigo !== "") {
+if (isset($_GET['nome'])) {
+    $nome = trim($_GET['nome']);
+}
+
+if ($nome !== "") {
+    $clientes = $c->pesquisarPorNome($nome);
+} else if ($codigo !== "") {
     $clientes = $c->pesquisarPorCodigo($codigo);
 } else {
     $clientes = $c->listarClientes();
@@ -85,13 +92,14 @@ if ($codigo !== "") {
                     <label id="lbCodigo" class="col-form-label col-1">Código:</label>
                     <div class="col-2 ps-0">
                         <input class="form-control inputRadius2px" type="text" placeholder="Código"
-                        name="codigo" value=<?= $codigo ?>>
+                        name="codigo" value=<?php if ($codigo !== "") $codigo ?>>
                     </div>
                     <label id="lbNome" class="col-form-label col-1 ms-1">Nome:</label>
                     <div class="col-2 ps-0">
-                        <input class="form-control inputRadius2px" type="text" placeholder="Nome" name="nome"
+                        <input class="form-control inputRadius2px" type="text" placeholder="Nome" name="nome" 
                         data-bs-toggle="tooltip" data-bs-placement="bottom"
-                        data-bs-title="Digitar algo aqui faz a aplicação ignorar o que estiver escrito no campo de código.">
+                        data-bs-title="Digitar algo aqui faz a aplicação ignorar o que estiver escrito no campo de código."
+                        value=<?= $nome ?>>
                     </div>
                     <div class="col">
                         <button class="btn btn-secondary"><i class="fa fa-magnifying-glass me-1"></i> Buscar</button>

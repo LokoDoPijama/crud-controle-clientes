@@ -85,6 +85,8 @@ class Cliente {
 
     }
 
+    
+
     public function cadastrarCliente($cliente) {
 
         $sql = "insert into clientes (nome, email, contato, endereco)

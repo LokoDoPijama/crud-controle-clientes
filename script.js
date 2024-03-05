@@ -20,9 +20,9 @@ const tooltip = document.querySelector("[data-bs-toggle='tooltip']");
 const tooltipObj = new bootstrap.Tooltip(tooltip, {"trigger": "hover"});
 const formBusca = document.querySelector("#formBusca");
 const btnMaisOpcoes = document.querySelector("#btnMaisOpcoes");
-const ulCard = document.querySelector("#ulCard");
-const liMaisOpcoes = document.querySelector("#liMaisOpcoes");
 const formMaisOpcoes = document.querySelector("#formMaisOpcoes");
+const mediaQuery = window.matchMedia("screen and (max-width: 991px)");
+const btnsBusca  = document.querySelectorAll(".btnsBusca");
 
 
 // Funções
@@ -154,4 +154,12 @@ formMaisOpcoes.addEventListener("submit", function(e){
         e.preventDefault();
         location = "index.php";
     }
+});
+
+mediaQuery.addEventListener("change", function() {
+
+    btnsBusca.forEach(btn => {
+        btn.classList.toggle("ms-1");
+    });
+
 });

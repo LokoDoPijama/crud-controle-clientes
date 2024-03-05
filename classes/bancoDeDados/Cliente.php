@@ -85,7 +85,59 @@ class Cliente {
 
     }
 
+    public function pesquisarPorEmail($email) {
+
+        $sql = "select * from clientes where email like :email";
+
+        $q = $this->conexao->prepare($sql);
+
+        $email = "%" . $email . "%";
+        
+        $q->bindParam(":email", $email);
+
+        $q->execute();
+
+        $clientes = $this->mapear($q);
+
+        return $clientes;
+
+    }
+
+    public function pesquisarPorContato($contato) {
+
+        $sql = "select * from clientes where contato like :contato";
+
+        $q = $this->conexao->prepare($sql);
+
+        $contato = "%" . $contato . "%";
+        
+        $q->bindParam(":contato", $contato);
+
+        $q->execute();
+
+        $clientes = $this->mapear($q);
+
+        return $clientes;
+
+    }
     
+    public function pesquisarPorEndereco($endereco) {
+
+        $sql = "select * from clientes where endereco like :endereco";
+
+        $q = $this->conexao->prepare($sql);
+
+        $endereco = "%" . $endereco . "%";
+        
+        $q->bindParam(":endereco", $endereco);
+
+        $q->execute();
+
+        $clientes = $this->mapear($q);
+
+        return $clientes;
+
+    }
 
     public function cadastrarCliente($cliente) {
 

@@ -24,6 +24,12 @@ if ($nome !== "") {
     $clientes = $c->pesquisarPorNome($nome);
 } else if ($codigo !== "") {
     $clientes = $c->pesquisarPorCodigo($codigo);
+} else if ($endereco !== "") {
+    $clientes = $c->pesquisarPorEndereco($endereco);
+} else if ($contato !== "") {
+    $clientes = $c->pesquisarPorContato($contato);
+} else if ($email !== "") {
+    $clientes = $c->pesquisarPorEmail($email);
 } else {
     $clientes = $c->listarClientes();
 }
@@ -39,6 +45,8 @@ if ($nome !== "") {
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+    
 
     <style>
         @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css");
@@ -79,6 +87,26 @@ if ($nome !== "") {
             }
         }
 
+        @media screen and (max-width: 1339px) {
+
+            .lbWidth8 {
+                width: auto;
+            }
+
+        }
+
+        @media screen and (max-width: 991px) {
+
+            .divBusca {
+                padding-left: 0;
+            }
+
+            .btnsBusca {
+                margin-top: 1em;
+            }
+
+        }
+
     </style>
 </head>
 <body>
@@ -102,22 +130,22 @@ if ($nome !== "") {
                 <div class="card-body">
                     <form id="formBusca" action="index.php" method="get">
                         <div class="row">
-                            <label id="lbCodigo" class="col-form-label col-1 lbWidth8">Código:</label>
-                            <div class="col-2 ps-0">
+                            <label id="lbCodigo" class="col-form-label col-lg-1 lbWidth8">Código:</label>
+                            <div class="col-lg-2 ps-0">
                                 <input class="form-control inputRadius2px" type="text" placeholder="Código"
-                                name="codigo" value=<?php $codigo ?>>
+                                name="codigo" value=<?php echo $nome === "" ? $codigo : "" ?>>
                             </div>
-                            <label id="lbNome" class="col-form-label col-1 ms-1 lbWidth8">Nome:</label>
-                            <div class="col-2 ps-0">
+                            <label id="lbNome" class="col-form-label col-lg-1 ms-1 lbWidth8">Nome:</label>
+                            <div class="col-lg-2 ps-0">
                                 <input class="form-control inputRadius2px" type="text" placeholder="Nome" name="nome" 
                                 data-bs-toggle="tooltip" data-bs-placement="bottom"
                                 data-bs-title="Digitar algo aqui faz a aplicação ignorar o que estiver escrito no campo de código."
                                 value=<?= $nome ?>>
                             </div>
-                            <div class="col">
-                                <button class="btn btn-secondary"><i class="fa fa-magnifying-glass me-1"></i> Buscar</button>
+                            <div class="col-lg divBusca">
+                                <button class="btn btn-secondary ms-1 btnsBusca"><i class="fa fa-magnifying-glass me-1"></i> Buscar</button>
                             </div>
-                            <div class="col d-flex justify-content-end">
+                            <div class="col-lg d-flex justify-content-end">
                                 <button id="btnMaisOpcoes" class="btn btn-secondary" type="button"><i class="fa fa-ellipsis-vertical me-1"></i> Mais Opções</button>
                             </div>
                         </div>
@@ -128,31 +156,41 @@ if ($nome !== "") {
                 <div class="card-body">
                     <form id="formMaisOpcoes" action="index.php" method="get">
                         <div class="row">
-                            <label id="lbEmail" class="col-form-label col-1 lbWidth8">E-mail:</label>
-                            <div class="col-2 ps-0">
+                            <label id="lbEmail" class="col-form-label col-lg-1 lbWidth8">E-mail:</label>
+                            <div class="col-lg-2 ps-0">
                                 <input class="form-control inputRadius2px" type="text" placeholder="Email"
-                                name="email" value=<?php $email ?>>
+                                name="email" value=<?php echo $contato === "" && $endereco === "" ?  $email : ""; ?>>
                             </div>
-                            <label id="lbContato" class="col-form-label col-1 ms-1 lbWidth8">Contato:</label>
-                            <div class="col-2 ps-0">
+                            <label id="lbContato" class="col-form-label col-lg-1 ms-1 lbWidth8">Contato:</label>
+                            <div class="col-lg-2 ps-0">
                                 <input class="form-control inputRadius2px" type="text" placeholder="Contato" name="contato" 
                                 data-bs-toggle="tooltip" data-bs-placement="bottom"
                                 data-bs-title="Digitar algo aqui faz algo, só digo isso"
-                                value=<?= $contato ?>>
+                                value=<?php echo $endereco === "" ? $contato : "" ?>>
                             </div>
-                            <label id="lbEndereco" class="col-form-label col-1 lbWidth8">Endereço:</label>
-                            <div class="col-2 ps-0">
+                            <label id="lbEndereco" class="col-form-label col-lg-1 ms-1 lbWidth8">Endereço:</label>
+                            <div class="col-lg-2 ps-0">
                                 <input class="form-control inputRadius2px" type="text" placeholder="Endereço"
-                                name="endereco" value=<?php $endereco ?>>
+                                name="endereco" value=<?= $endereco ?>>
                             </div>
-                            <div class="col">
-                                <button class="btn btn-secondary"><i class="fa fa-magnifying-glass me-1"></i> Buscar</button>
+                            <div class="col divBusca">
+                                <button class="btn btn-secondary ms-1 btnsBusca"><i class="fa fa-magnifying-glass me-1"></i> Buscar</button>
                             </div>
                         </div>
                     </form>
                 </div>
             </li>
         </ul>
+
+        <script> // Este código está aqui para a ação de abrir as opções adicionais ser efetuada mais rapidamente
+            const ulCard = document.querySelector("#ulCard");
+            const liMaisOpcoes = document.querySelector("#liMaisOpcoes");
+
+            if (location.search.includes("email")) {
+                liMaisOpcoes.classList.toggle("d-none");
+                ulCard.classList.toggle("border-0");
+            }
+        </script>
 
         <div class="card-body">
             <button id="btnCadastrar" class="btn btn-primary" onclick="mostrarModal('cadastro')">Cadastrar Cliente <i class="fa fa-add"></i></button>

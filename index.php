@@ -165,12 +165,14 @@ if ($nome !== "") {
                             <div class="col-lg-2 ps-0">
                                 <input class="form-control inputRadius2px" type="text" placeholder="Contato" name="contato" 
                                 data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                data-bs-title="Digitar algo aqui faz algo, só digo isso"
+                                data-bs-title="Digitar algo aqui faz a aplicação ignorar o que estiver escrito nos campos à esquerda."
                                 value=<?php echo $endereco === "" ? $contato : "" ?>>
                             </div>
                             <label id="lbEndereco" class="col-form-label col-lg-1 ms-1 lbWidth8">Endereço:</label>
                             <div class="col-lg-2 ps-0">
                                 <input class="form-control inputRadius2px" type="text" placeholder="Endereço"
+                                data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                data-bs-title="Digitar algo aqui faz a aplicação ignorar o que estiver escrito nos campos à esquerda."
                                 name="endereco" value=<?= $endereco ?>>
                             </div>
                             <div class="col divBusca">

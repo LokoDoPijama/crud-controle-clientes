@@ -76,17 +76,6 @@ if ($nome !== "") {
             font-family: 'Anta', 'sans-serif';
         }
 
-        @media screen and (max-width: 727px) {
-
-            .btn-primary span {
-                display: none;
-            }
-
-            .btn-danger span {
-                display: none;
-            }
-        }
-
         @media screen and (max-width: 1339px) {
 
             .lbWidth8 {
@@ -103,6 +92,33 @@ if ($nome !== "") {
 
             .btnsBusca {
                 margin-top: 1em;
+            }
+
+        }
+        
+        @media screen and (max-width: 727px) {
+
+            .btn-primary span {
+                display: none;
+            }
+
+            .btn-danger span {
+                display: none;
+            }
+        }
+
+        @media screen and (max-width: 560px) {
+
+            #spanNavbar {
+                font-size: 1.3em;
+            }
+
+        }
+
+        @media screen and (max-width: 420px) {
+
+            #spanNavbar {
+                font-size: 1.1em;
             }
 
         }
@@ -165,14 +181,14 @@ if ($nome !== "") {
                             <div class="col-lg-2 ps-0">
                                 <input class="form-control inputRadius2px" type="text" placeholder="Contato" name="contato" 
                                 data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                data-bs-title="Digitar algo aqui faz a aplicação ignorar o que estiver escrito nos campos à esquerda."
+                                data-bs-title="Digitar algo aqui faz a aplicação ignorar o que estiver escrito nos campos anteriores."
                                 value=<?php echo $endereco === "" ? $contato : "" ?>>
                             </div>
                             <label id="lbEndereco" class="col-form-label col-lg-1 ms-1 lbWidth8">Endereço:</label>
                             <div class="col-lg-2 ps-0">
                                 <input class="form-control inputRadius2px" type="text" placeholder="Endereço"
                                 data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                data-bs-title="Digitar algo aqui faz a aplicação ignorar o que estiver escrito nos campos à esquerda."
+                                data-bs-title="Digitar algo aqui faz a aplicação ignorar o que estiver escrito nos campos anteriores."
                                 name="endereco" value=<?= $endereco ?>>
                             </div>
                             <div class="col divBusca">

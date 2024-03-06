@@ -87,6 +87,12 @@ if (sessionStorage.getItem("clienteDeletado") == "true") {
     }
 }
 
+if (window.screen.width <= 991) {
+
+    btnsBusca.forEach(btn => {
+        btn.classList.remove("ms-1");
+    });
+}
 
 // Eventos
 
@@ -161,5 +167,4 @@ mediaQuery.addEventListener("change", function() {
     btnsBusca.forEach(btn => {
         btn.classList.toggle("ms-1");
     });
-
 });

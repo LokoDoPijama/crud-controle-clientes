@@ -161,7 +161,7 @@ if ($nome !== "") {
                             <div class="col-lg divBusca">
                                 <button class="btn btn-secondary ms-1 btnsBusca"><i class="fa fa-magnifying-glass me-1"></i> Buscar</button>
                             </div>
-                            <div class="col-lg d-flex justify-content-end">
+                            <div id="divMaisOpcoes" class="col-lg d-flex justify-content-end">
                                 <button id="btnMaisOpcoes" class="btn btn-secondary" type="button"><i class="fa fa-ellipsis-vertical me-1"></i> Mais Opções</button>
                             </div>
                         </div>

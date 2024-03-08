@@ -19,11 +19,12 @@ const ttbEndereco = document.querySelector("#ttbEndereco");
 const tooltipArray = document.querySelectorAll("[data-bs-toggle='tooltip']");
 const tooltipObjArray = [...tooltipArray].map(tooltip => new bootstrap.Tooltip(tooltip, {"trigger": "hover"}));
 const formBusca = document.querySelector("#formBusca");
+const divMaisOpcoes = document.querySelector("#divMaisOpcoes");
 const btnMaisOpcoes = document.querySelector("#btnMaisOpcoes");
 const formMaisOpcoes = document.querySelector("#formMaisOpcoes");
-const mediaQuery = window.matchMedia("screen and (max-width: 991px)");
 const btnsBusca  = document.querySelectorAll(".btnsBusca");
-
+const mqMax991px = window.matchMedia("screen and (max-width: 991px)");
+const mqMax420px = window.matchMedia("screen and (max-width: 420px)");
 
 // Funções
 
@@ -94,6 +95,16 @@ if (window.screen.width <= 991) {
     });
 }
 
+if (window.screen.width <= 420) {
+
+    divMaisOpcoes.classList.toggle("justify-content-end");
+    divMaisOpcoes.classList.toggle("justify-content-start");
+    divMaisOpcoes.classList.toggle("ps-0");
+    divMaisOpcoes.classList.toggle("mt-3");
+
+}
+
+
 // Eventos
 
 modal.addEventListener("hidden.bs.modal", function(){
@@ -162,9 +173,18 @@ formMaisOpcoes.addEventListener("submit", function(e){
     }
 });
 
-mediaQuery.addEventListener("change", function() {
+mqMax991px.addEventListener("change", function() {
 
     btnsBusca.forEach(btn => {
         btn.classList.toggle("ms-1");
     });
+});
+
+mqMax420px.addEventListener("change", function() {
+
+    divMaisOpcoes.classList.toggle("justify-content-end");
+    divMaisOpcoes.classList.toggle("justify-content-start");
+    divMaisOpcoes.classList.toggle("ps-0");
+    divMaisOpcoes.classList.toggle("mt-3");
+
 });

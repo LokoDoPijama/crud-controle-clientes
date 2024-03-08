@@ -204,7 +204,7 @@ if ($nome !== "") {
             const ulCard = document.querySelector("#ulCard");
             const liMaisOpcoes = document.querySelector("#liMaisOpcoes");
 
-            if (location.search.includes("email")) {
+            if (location.search.includes("email") || location.search.includes("contato") || location.search.includes("endereco")) {
                 liMaisOpcoes.classList.toggle("d-none");
                 ulCard.classList.toggle("border-0");
             }
@@ -239,18 +239,36 @@ if ($nome !== "") {
                                     <button class="btn btn-primary" onclick="mostrarModal('editar', <?= $cliente->codigo; ?> )"><span>Editar </span><i class="fa fa-pencil"></i></button>
                                 </div>
                                 <div class="d-inline-block">
-                                    <a href="deletarCliente.php?codigo=<?= $cliente->codigo ?>"><button class="btn btn-danger"><span>Excluir </span><i class="fa fa-trash"></i></button></a>
+                                    <a href="deletarCliente.php?codigo=<?php  echo $cliente->codigo; 
+                                    
+                                    foreach ($_GET as $chave => $valor) {
+                                        if ($valor !== "" && $chave !== "codigo") {
+                                            echo "&". $chave . "=" . $valor;
+                                        }
+                                    }
+
+                                    ?>"><button class="btn btn-danger"><span>Excluir </span><i class="fa fa-trash"></i></button></a>
                                 </div>
                             </td>
                         </tr>
 
                         <div id="jsonCliente<?= $cliente->codigo; ?>" class="d-none"><?= json_encode($cliente); ?></div>
                     <?php } ?>
+
+                    <?php
+
+                    // Se a tabela estiver vazia
+
+                    if (count($clientes) == 0) { ?>
+
+                        <td class="fs-5 py-4" colspan=6>Nenhum registro encontrado, <a href="index.php">clique aqui</a> para ver todos os registros</td>
+                    
+                   <?php } ?>
+
                 </table>
             </div>
         </div>
     </div>
-    
 
     <div hidden id="clienteDeletado"><?php if (isset($_POST['clienteDeletado'])) echo $_POST['clienteDeletado']; ?></div>
 

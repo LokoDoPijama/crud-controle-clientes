@@ -88,14 +88,14 @@ if (sessionStorage.getItem("clienteDeletado") == "true") {
     }
 }
 
-if (window.screen.width <= 991) {
+if (document.body.clientWidth <= 991) {
 
     btnsBusca.forEach(btn => {
         btn.classList.remove("ms-1");
     });
 }
 
-if (window.screen.width <= 420) {
+if (document.body.clientWidth <= 420) {
 
     divMaisOpcoes.classList.toggle("justify-content-end");
     divMaisOpcoes.classList.toggle("justify-content-start");

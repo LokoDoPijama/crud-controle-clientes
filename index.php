@@ -129,7 +129,9 @@ if ($nome !== "") {
 
     <nav class="navbar bg-primary fixed-top">
         <div class="container-fluid d-flex justify-content-center">
-          <span id="spanNavbar" class="navbar-brand m-0 ms-3 h1 text-white">CONTROLE DE CLIENTES</span>
+            <span id="spanNavbar" class="navbar-brand m-0 ms-3 h1 text-white">
+                <a class="text-decoration-none text-white" href="index.php">CONTROLE DE CLIENTES</a>
+            </span>
         </div>
     </nav>
 

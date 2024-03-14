@@ -70,7 +70,7 @@ function mostrarAlert() {
 
     disposableAlert.classList.remove("d-none");
 
-    setTimeout(function(){
+    setTimeout(() => {
 
         alertObj.close();
 
@@ -107,7 +107,7 @@ if (document.body.clientWidth <= 420) {
 
 // Eventos
 
-modal.addEventListener("hidden.bs.modal", function(){
+modal.addEventListener("hidden.bs.modal", () => {
     formCadastro.reset();
 
     modalBody.childNodes.forEach(formElement => {
@@ -115,9 +115,64 @@ modal.addEventListener("hidden.bs.modal", function(){
             formElement.removeAttribute("value");
         }
     });
+
+    ttbContato.classList.remove("border-danger");
+
+    ttbContato.classList.replace("mb-1", "mb-3");
+
+    document.querySelector("#msgErro").remove();
+
 });
 
-formBusca.addEventListener("submit", function(e){
+formCadastro.addEventListener("submit", e => {
+
+    if (!/^\d+$/.test(ttbContato.value) || ttbContato.value.length > 16) {
+
+        e.preventDefault();
+
+        ttbContato.classList.add("border-danger");
+
+        ttbContato.classList.replace("mb-3", "mb-1");
+
+        if (document.querySelector("#msgErro")) {
+
+            let msg = document.querySelector("#msgErro");
+
+            msg.innerHTML = "<i class='fa fa-circle-info'></i> Digite apenas números";
+
+            if (ttbContato.value.length > 16) {
+                msg.innerHTML = "<i class='fa fa-circle-info'></i> Insira no máximo 16 dígitos";
+            }
+
+            return;
+        }
+
+        let msg = document.createElement("p");
+
+        msg.id = "msgErro";
+
+        msg.innerHTML = "<i class='fa fa-circle-info'></i> Digite apenas números";
+
+        if (ttbContato.value.length > 16) {
+            msg.innerHTML = "<i class='fa fa-circle-info'></i> Insira no máximo 16 dígitos";
+        }
+
+        msg.style = "font-size: 0.85em;";
+
+        msg.classList.add("text-danger");
+
+        ttbContato.parentNode.insertBefore(msg, ttbContato.nextSibling);
+
+    }
+});
+
+ttbContato.addEventListener("change", () => {
+
+    ttbContato.classList.remove("border-danger");
+
+});
+
+formBusca.addEventListener("submit", e => {
 
     sessionStorage.setItem("clienteDeletado", "false");
     
@@ -141,7 +196,7 @@ formBusca.addEventListener("submit", function(e){
     }
 });
 
-btnMaisOpcoes.addEventListener("click", function() {
+btnMaisOpcoes.addEventListener("click", () =>  {
 
     liMaisOpcoes.classList.toggle("d-none");
 
@@ -149,7 +204,7 @@ btnMaisOpcoes.addEventListener("click", function() {
 
 });
 
-formMaisOpcoes.addEventListener("submit", function(e){
+formMaisOpcoes.addEventListener("submit", e => {
 
     sessionStorage.setItem("clienteDeletado", "false");
     
@@ -173,14 +228,14 @@ formMaisOpcoes.addEventListener("submit", function(e){
     }
 });
 
-mqMax991px.addEventListener("change", function() {
+mqMax991px.addEventListener("change", () =>  {
 
     btnsBusca.forEach(btn => {
         btn.classList.toggle("ms-1");
     });
 });
 
-mqMax420px.addEventListener("change", function() {
+mqMax420px.addEventListener("change", () =>  {
 
     divMaisOpcoes.classList.toggle("justify-content-end");
     divMaisOpcoes.classList.toggle("justify-content-start");

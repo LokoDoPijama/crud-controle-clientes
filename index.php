@@ -295,7 +295,7 @@ if ($nome !== "") {
                     <input id="ttbEmail" class="form-control mb-3" type="text" placeholder="E-mail" name="email">
 
                     <label class="form-label">Contato</label>
-                    <input id="ttbContato" class="form-control mb-3" type="text" placeholder="Contato" name="contato">
+                    <input id="ttbContato" class="form-control mb-3" type="text" placeholder="Contato" name="contato" maxlength="16">
 
                     <label class="form-label">Endereço</label>
                     <input id="ttbEndereco" class="form-control mb-3" type="text" placeholder="Endereço" name="endereco">
